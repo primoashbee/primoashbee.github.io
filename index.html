@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashbee — Backend Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0f0804;
+            --secondary: #1a1410;
+            --accent: #ff6b35;
+            --accent-dark: #e55100;
+            --text: #f5f1ed;
+            --text-muted: #bfb7b0;
+            --border: #3d3530;
+            --success: #ff8c42;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, #0a0e27 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background gradient orbs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 140, 66, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(40px); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+            margin-bottom: 4rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--success) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 8rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-content h1 .highlight {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--success) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--primary);
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(56, 189, 248, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .code-card {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .code-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .code-line {
+            display: flex;
+            gap: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .code-number {
+            color: var(--text-muted);
+            opacity: 0.6;
+            min-width: 30px;
+            text-align: right;
+        }
+
+        .code-text {
+            color: var(--text);
+        }
+
+        .code-keyword {
+            color: var(--accent);
+        }
+
+        .code-string {
+            color: var(--success);
+        }
+
+        /* Projects Section */
+        .projects {
+            margin-bottom: 8rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            border-radius: 2px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+        }
+
+        .project-tag {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills {
+            margin-bottom: 8rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .skill-item::before {
+            content: '▸';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 2rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.3);
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid rgba(51, 65, 85, 0.3);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 4rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">A.</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Backend Engineer <span class="highlight">Laravel Specialist</span></h1>
+                <p>Building scalable web applications with modern PHP architecture. Focused on clean code, DDD principles, and production-ready solutions across automotive and enterprise systems.</p>
+                
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="https://github.com" class="btn btn-secondary">View GitHub</a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Projects Shipped</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Coffee Consumed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="code-card">
+                    <div class="code-line">
+                        <span class="code-number">1</span>
+                        <span><span class="code-keyword">$dev</span> = <span class="code-keyword">new</span> <span class="code-text">Ashbee</span>()</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-number">2</span>
+                        <span><span class="code-keyword">$result</span> = <span class="code-keyword">$dev</span>->buildBackend(<span class="code-string">'your project'</span>)</span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-number">3</span>
+                        <span></span>
+                    </div>
+                    <div class="code-line">
+                        <span class="code-number">4</span>
+                        <span><span class="code-keyword">return</span> [<span class="code-string">'shipped'</span> => <span class="code-keyword">true</span>, <span class="code-string">'quality'</span> => <span class="code-string">'production'</span>]</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <h2 class="section-title">Recent Work</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <span class="project-tag">University Portal</span>
+                    <h3 class="project-title">Skill Search Platform</h3>
+                    <p class="project-description">Integrated Lightcast Classification API with OAuth2 authentication and hierarchy-aware search for skills taxonomy. Built backend-driven search feature with optimized query patterns.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">API</span>
+                        <span class="tech-badge">OAuth2</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">CRM</span>
+                    <h3 class="project-title">Lead To Sales CRM</h3>
+                    <p class="project-description">End-to-end lead management and sales pipeline system. CSV/XLSX import with two-step column mapping, appointment scheduling, and conversion tracking integrated into customer workflows.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">CSV/XLSX</span>
+                        <span class="tech-badge">Database</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">University Portal</span>
+                    <h3 class="project-title">ALMA XML Export Pipeline</h3>
+                    <p class="project-description">Scheduled flat-file XML generation to library system via SFTP. Implemented AWS key management, error handling, and automated backup retention policies.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">SFTP</span>
+                        <span class="tech-badge">Automation</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">CRM</span>
+                    <h3 class="project-title">CDK Drive Integration</h3>
+                    <p class="project-description">API integration with CDK automotive dealer management system. OAuth2 authentication migration from legacy credentials with real-time data synchronization and dealership workflow automation.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">API Integration</span>
+                        <span class="tech-badge">OAuth2</span>
+                        <span class="tech-badge">Laravel</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">CRM</span>
+                    <h3 class="project-title">Twilio Communications</h3>
+                    <p class="project-description">SMS A2P 10DLC implementation, call whisper, barge-in with conference features, and rate limiting management. Production-grade communication automation for sales and support workflows.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">API Integration</span>
+                        <span class="tech-badge">Twilio</span>
+                        <span class="tech-badge">SMS</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">CRM</span>
+                    <h3 class="project-title">Legacy to Modern Migration</h3>
+                    <p class="project-description">Migration of legacy system to modern Laravel architecture with complete data migration strategy. Handled schema transformation, data validation, and zero-downtime deployment for production database.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">Database</span>
+                        <span class="tech-badge">Migration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills" id="skills">
+            <h2 class="section-title">Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Arsenal</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Laravel & PHP</div>
+                        <div class="skill-item">REST API Design</div>
+                        <div class="skill-item">Database Design & Optimization</div>
+                        <div class="skill-item">OAuth2 & Auth Patterns</div>
+                        <div class="skill-item">Query Performance & Caching</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Experience With</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">Automotive & logistics apps</div>
+                        <div class="skill-item">Enterprise integrations</div>
+                        <div class="skill-item">Data import/export pipelines</div>
+                        <div class="skill-item">Communication APIs & SMS</div>
+                        <div class="skill-item">Real-time applications</div>
+                        <div class="skill-item">Job queuing & background processing</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <h2>Ready to collaborate?</h2>
+            <p>Let's build something great together. Reach out via email or find me on GitHub.</p>
+            <div class="social-links">
+                <a href="/cdn-cgi/l/email-protection#69081a010b0c0c4704291a0108020c1e0c050547070c1d" class="social-link">
+                    📧 Email
+                </a>
+                <a href="https://github.com" class="social-link">
+                    💻 GitHub
+                </a>
+                <a href="https://linkedin.com" class="social-link">
+                    💼 LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Ashbee. Built with attention to clean code and good design.</p>
+        </footer>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll animation to project cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        });

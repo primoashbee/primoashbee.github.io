@@ -708,31 +708,34 @@
         <footer>
             <p>&copy; 2024 Ashbee Morgado. Built with attention to clean code and good design.</p>
             <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
-                Views: <span id="view-count">0</span>
+                Views: <span id="view-counter">0</span>
             </p>
         </footer>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // View counter using CountAPI
-        function initializeViewCounter() {
-            const viewCountElement = document.getElementById('view-count');
-            const namespace = 'ashbee-morgados-team';
-            const key = 'ut_GX6MNBddKJsMpREL3y2q54urfV9XE3wq4Gt2fjfM';
-            
-            fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-                .then(res => res.json())
-                .then(data => {
-                    viewCountElement.textContent = data.value;
-                })
-                .catch(err => {
-                    console.error('Error fetching view count:', err);
-                    viewCountElement.textContent = '∞'; // Fallback
-                });
-        }
 
-        initializeViewCounter();
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const counter = new Counter({ 
+                workspace: 'ashbee-morgados-team-3272',
+                debug: true,
+                accessToken: 'ut_GX6MNBddKJsMpREL3y2q54urfV9XE3wq4Gt2fjfM'
+            });
 
+            const counterElement = document.getElementById('view-counter');
+
+            counter.up('github-profile-views')
+            .then(result => {
+                counterElement.textContent = result.value;
+            })
+            .catch(error => {
+                console.error(error);
+                counterElement.textContent = "Error";
+            });
+        });
+    
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -752,3 +755,5 @@
                 }
             });
         });
+
+    </script>

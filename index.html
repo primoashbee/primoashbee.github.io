@@ -710,30 +710,17 @@
             <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
                 Views: <span id="view-counter">0</span>
             </p>
+            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+                <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fprimoashbee.github.io&label=Views&icon=eye&color=%23ff6b35&labelColor=%230f0804" alt="Views" style="height: 20px; vertical-align: middle;" />
+            </p>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
+
 
 
     
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const counter = new Counter({ 
-                workspace: 'ashbee-morgados-team-3272',
-                debug: true,
-            });
 
-            const counterElement = document.getElementById('view-counter');
-
-            counter.up('github-profile-views')
-            .then(result => {
-                counterElement.textContent = result.value;
-            })
-            .catch(error => {
-                console.error(error);
-                counterElement.textContent = "Error";
-            });
-        });
     
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

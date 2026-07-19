@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashbee — Backend Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Ashbee Morgado — Senior Full-Stack Developer specializing in Laravel, Vue/Nuxt, and AWS. 9+ years shipping production systems for fintech, automotive, and telecom clients across Australia, the US, and New Zealand.">
+    <title>Ashbee Morgado — Senior Full-Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,14 +14,15 @@
         }
 
         :root {
-            --primary: #0f0804;
-            --secondary: #1a1410;
-            --accent: #ff6b35;
-            --accent-dark: #e55100;
-            --text: #f5f1ed;
-            --text-muted: #bfb7b0;
-            --border: #3d3530;
-            --success: #ff8c42;
+            --primary: #05070d;
+            --secondary: #0c1120;
+            --accent: #6366f1;
+            --accent-2: #22d3ee;
+            --accent-dark: #4338ca;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(148, 163, 184, 0.16);
+            --success: #34d399;
         }
 
         html {
@@ -29,7 +31,7 @@
 
         body {
             font-family: 'Space Grotesk', sans-serif;
-            background: linear-gradient(135deg, var(--primary) 0%, #0a0e27 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #070a17 100%);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
@@ -44,7 +46,7 @@
             right: -10%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 20s ease-in-out infinite;
             pointer-events: none;
@@ -58,7 +60,7 @@
             left: -10%;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(255, 140, 66, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             animation: float 25s ease-in-out infinite reverse;
             pointer-events: none;
@@ -84,7 +86,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 2rem 0;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+            border-bottom: 1px solid var(--border);
             margin-bottom: 4rem;
         }
 
@@ -96,7 +98,10 @@
         }
 
         .logo-accent {
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .nav-links {
@@ -121,12 +126,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
             transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--text);
         }
 
         .nav-links a:hover::after {
@@ -136,16 +141,52 @@
         /* Hero Section */
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.15fr 0.85fr;
             gap: 4rem;
             align-items: center;
-            margin-bottom: 8rem;
+            margin-bottom: 7rem;
             animation: fadeInUp 0.8s ease-out;
+        }
+
+        .availability-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            background: rgba(148, 163, 184, 0.05);
+        }
+
+        .availability-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2); }
+            50% { box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.12); }
+        }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-2);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
         }
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: 3.6rem;
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
@@ -153,7 +194,7 @@
         }
 
         .hero-content h1 .highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--success) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -163,7 +204,7 @@
             font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
-            max-width: 500px;
+            max-width: 560px;
         }
 
         .cta-buttons {
@@ -188,23 +229,24 @@
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            color: var(--primary);
-            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.2);
+            color: #f8fafc;
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25);
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.35);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
+            color: var(--text);
+            border: 2px solid var(--border);
         }
 
         .btn-secondary:hover {
-            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-2);
+            color: var(--accent-2);
             transform: translateY(-2px);
         }
 
@@ -224,7 +266,10 @@
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.8rem;
             font-weight: 600;
-            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .stat-label {
@@ -248,8 +293,8 @@
             height: 400px;
             border-radius: 16px;
             overflow: hidden;
-            border: 2px solid var(--border);
-            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.18);
             animation: slideIn 0.8s ease-out;
         }
 
@@ -267,13 +312,31 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, transparent 50%);
             pointer-events: none;
         }
 
-/* Projects Section */
-        .projects {
+        .profile-photo-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.15);
+            pointer-events: none;
+        }
+
+        /* Section shared */
+        section {
             margin-bottom: 8rem;
+        }
+
+        .section-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-2);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
         }
 
         .section-title {
@@ -292,10 +355,117 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--success));
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
             border-radius: 2px;
         }
 
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent), var(--accent-2) 40%, var(--border) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.5rem;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid var(--accent-2);
+            box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.1);
+        }
+
+        .timeline-card {
+            background: rgba(148, 163, 184, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 2rem;
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-role {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-2);
+            white-space: nowrap;
+        }
+
+        .timeline-company {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-company strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .timeline-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .timeline-bullets li {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .timeline-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-2);
+            font-weight: bold;
+        }
+
+        /* Projects Section */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -303,7 +473,7 @@
         }
 
         .project-card {
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(148, 163, 184, 0.04);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 2rem;
@@ -320,7 +490,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.08), transparent);
             transition: left 0.5s;
         }
 
@@ -335,8 +505,8 @@
 
         .project-tag {
             display: inline-block;
-            background: rgba(56, 189, 248, 0.15);
-            color: var(--accent);
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--accent-2);
             padding: 0.4rem 0.8rem;
             border-radius: 4px;
             font-size: 0.75rem;
@@ -366,7 +536,7 @@
         }
 
         .tech-badge {
-            background: rgba(16, 185, 129, 0.15);
+            background: rgba(52, 211, 153, 0.12);
             color: var(--success);
             padding: 0.35rem 0.75rem;
             border-radius: 4px;
@@ -376,28 +546,29 @@
         }
 
         /* Skills Section */
-        .skills {
-            margin-bottom: 8rem;
-        }
-
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .skill-category {
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(148, 163, 184, 0.04);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 2rem;
             backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
         }
 
         .skill-category h3 {
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+            color: var(--accent-2);
+            font-size: 1rem;
+            margin-bottom: 1.3rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
@@ -405,22 +576,83 @@
 
         .skill-list {
             display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
+            flex-wrap: wrap;
+            gap: 0.6rem;
         }
 
-        .skill-item {
+        .skill-pill {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 0.4rem 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Education */
+        .education-card {
+            background: rgba(148, 163, 184, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 2.2rem;
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .education-main h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-main p {
             color: var(--text-muted);
             font-size: 0.95rem;
+            margin-bottom: 1rem;
         }
 
-        .skill-item::before {
-            content: '▸';
-            color: var(--success);
-            font-weight: bold;
+        .education-awards {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .education-awards li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .education-awards li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: var(--accent-2);
+        }
+
+        .education-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-2);
+        }
+
+        .languages-row {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .language-pill {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .language-pill strong {
+            color: var(--text);
         }
 
         /* Contact Section */
@@ -430,7 +662,7 @@
             padding: 4rem 2rem;
             border: 1px solid var(--border);
             border-radius: 12px;
-            background: rgba(30, 41, 59, 0.3);
+            background: rgba(99, 102, 241, 0.04);
         }
 
         .contact h2 {
@@ -450,6 +682,7 @@
             justify-content: center;
             gap: 2rem;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
 
         .social-link {
@@ -463,13 +696,20 @@
         }
 
         .social-link:hover {
-            color: var(--accent);
+            color: var(--accent-2);
             transform: translateY(-3px);
+        }
+
+        .contact-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         /* Footer */
         footer {
-            border-top: 1px solid rgba(51, 65, 85, 0.3);
+            border-top: 1px solid var(--border);
             padding: 2rem 0;
             text-align: center;
             color: var(--text-muted);
@@ -508,7 +748,7 @@
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.3rem;
             }
 
             .nav-links {
@@ -537,6 +777,18 @@
             .hero-visual {
                 height: 300px;
             }
+
+            .timeline {
+                padding-left: 1.8rem;
+            }
+
+            .timeline-dot {
+                left: -1.8rem;
+            }
+
+            .education-card {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -546,6 +798,7 @@
         <nav>
             <div class="logo"><span class="logo-accent">Ashbee</span> Morgado</div>
             <ul class="nav-links">
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Work</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -555,26 +808,31 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
-                <h1>Backend Engineer <span class="highlight">Laravel Specialist</span></h1>
-                <p>Building scalable web applications with modern PHP architecture. Focused on clean code, DDD principles, and production-ready solutions across automotive and enterprise systems.</p>
-                
+                <div class="availability-badge">
+                    <span class="availability-dot"></span>
+                    Open to senior engineering roles
+                </div>
+                <div class="eyebrow">Laravel · Vue / Nuxt · AWS</div>
+                <h1>Senior <span class="highlight">Full-Stack Developer</span></h1>
+                <p>9+ years building and scaling production web applications across fintech, automotive, education, and telecom. Deep expertise in Laravel/PHP, Vue/Nuxt, and AWS — leading CRM platforms, payment systems, and API integrations for clients across Australia, the US, New Zealand, and the Philippines. Beyond the code, I work directly with clients to shape business strategy and product direction, translating goals into technical roadmaps rather than just executing tickets.</p>
+
                 <div class="cta-buttons">
                     <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                    <a href="https://github.com" class="btn btn-secondary">View GitHub</a>
+                    <a href="https://github.com/primoashbee" class="btn btn-secondary" target="_blank" rel="noopener">View GitHub</a>
                 </div>
 
                 <div class="stats">
                     <div class="stat">
-                        <div class="stat-number">5+</div>
+                        <div class="stat-number">9+</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Projects Shipped</div>
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Countries Served</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Coffee Consumed</div>
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Integrations Shipped</div>
                     </div>
                 </div>
             </div>
@@ -586,73 +844,172 @@
             </div>
         </section>
 
+        <!-- Experience Section -->
+        <section class="experience" id="experience">
+            <div class="section-eyebrow">Career</div>
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Senior Laravel Developer</span>
+                            <span class="timeline-date">Sep 2025 – May 2026</span>
+                        </div>
+                        <div class="timeline-company"><strong>Shakewell Agency</strong> — Australia / Remote</div>
+                        <ul class="timeline-bullets">
+                            <li>Architected and delivered a digital wallet platform handling secure payment processing and Passkit digital pass integration.</li>
+                            <li>Built a custom CMS giving non-technical clients self-service control over site content and structure.</li>
+                            <li>Developed a university alumni portal for Western Sydney University, including automated XML report delivery via SFTP.</li>
+                            <li>Integrated the Lightcast (EMSI) Classification API to power a skills search feature on the alumni portal.</li>
+                            <li>Delivered venue booking and sporting club membership platforms with SSO and integrated payment processing.</li>
+                            <li>Deployed on AWS (SES, Vapor) with Envoyer zero-downtime releases and Firebase for real-time features.</li>
+                            <li>Worked directly with clients throughout each engagement, shaping product and business strategy alongside technical delivery rather than just executing a spec.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Senior Developer</span>
+                            <span class="timeline-date">Nov 2023 – Sep 2025</span>
+                        </div>
+                        <div class="timeline-company"><strong>RevDojo</strong> — United States / Remote</div>
+                        <ul class="timeline-bullets">
+                            <li>Led development of BlitzDial, an auto-dialer CRM for automotive dealership customer relationship management, from architecture through AWS deployment.</li>
+                            <li>Led the migration of a legacy ActionHero.js CRM to a new Laravel/Vue codebase, including production data migration.</li>
+                            <li>Directed integrations with CDK Drive for repair order and service lane data, plus a dealership training LMS.</li>
+                            <li>Acted as technical lead, owning project planning and coordinating delivery across the development team.</li>
+                            <li>Built Twilio-powered voice/SMS workflows and a mystery-shopping evaluation module.</li>
+                            <li>Managed AWS infrastructure (RDS, S3) and explored AI-assisted features using LLM APIs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Web Application Developer</span>
+                            <span class="timeline-date">Mar 2022 – Aug 2024</span>
+                        </div>
+                        <div class="timeline-company"><strong>Straker.AI</strong> — New Zealand / Remote</div>
+                        <ul class="timeline-bullets">
+                            <li>Built and maintained a CRM and translation platform supporting global localization services.</li>
+                            <li>Delivered Slack and Microsoft Teams integrations connecting internal workflows into Straker's core applications.</li>
+                            <li>Worked on AI-powered features using Cohere and OpenAI, with Python (SQLAlchemy) for data modeling.</li>
+                            <li>Worked across a hybrid stack (ColdFusion/ColdBox alongside Laravel, Vue/TypeScript, React) supporting legacy and modern systems.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Senior Fullstack Developer</span>
+                            <span class="timeline-date">Jun 2021 – Jun 2022</span>
+                        </div>
+                        <div class="timeline-company"><strong>Global Electric Transport Ltd Pty</strong> — Australia / Remote</div>
+                        <ul class="timeline-bullets">
+                            <li>Built a portal for managing EV charging transactions with dynamic, role-based access control.</li>
+                            <li>Integrated EV charging station hardware using OCPP (Open Charge Point Protocol) for real-time charger communication.</li>
+                            <li>Developed the API powering the mobile app used to locate, start, and manage EV charging sessions.</li>
+                            <li>Developed a digital advertising platform with remote content management and a companion TV-based app.</li>
+                            <li>Implemented WebSockets and integrated payment gateways for transaction processing.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Programmer</span>
+                            <span class="timeline-date">Jun 2016 – Jun 2021</span>
+                        </div>
+                        <div class="timeline-company"><strong>LIGHT Microfinance Inc.</strong> — Philippines / On-site</div>
+                        <ul class="timeline-bullets">
+                            <li>Developed and maintained in-house applications supporting core microfinance operations.</li>
+                            <li>Served as in-house IT lead, managing infrastructure, third-party integrations, and ongoing support.</li>
+                            <li>Trained directors and managers on internal application usage to drive adoption across the organization.</li>
+                            <li>Deployed and hosted applications using Digital Ocean, HostGator, and cPanel.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Projects Section -->
         <section class="projects" id="projects">
-            <h2 class="section-title">Recent Work</h2>
+            <div class="section-eyebrow">Selected Work</div>
+            <h2 class="section-title">Notable Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <span class="project-tag">University Portal</span>
-                    <h3 class="project-title">Skill Search Platform</h3>
-                    <p class="project-description">Integrated Lightcast Classification API with OAuth2 authentication and hierarchy-aware search for skills taxonomy. Built backend-driven search feature with optimized query patterns.</p>
+                    <span class="project-tag">Fintech</span>
+                    <h3 class="project-title">Digital Wallet & Passkit Platform</h3>
+                    <p class="project-description">Architected and delivered a digital wallet platform for Shakewell Agency handling secure payment processing and Passkit digital pass issuance, deployed on AWS Vapor with zero-downtime releases via Envoyer.</p>
                     <div class="project-tech">
                         <span class="tech-badge">Laravel</span>
-                        <span class="tech-badge">API</span>
-                        <span class="tech-badge">OAuth2</span>
+                        <span class="tech-badge">Passkit</span>
+                        <span class="tech-badge">AWS Vapor</span>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <span class="project-tag">CRM</span>
-                    <h3 class="project-title">Lead To Sales CRM</h3>
-                    <p class="project-description">End-to-end lead management and sales pipeline system. CSV/XLSX import with two-step column mapping, appointment scheduling, and conversion tracking integrated into customer workflows.</p>
+                    <span class="project-tag">Automotive CRM</span>
+                    <h3 class="project-title">BlitzDial Auto-Dialer CRM</h3>
+                    <p class="project-description">Led architecture and delivery of an auto-dialer CRM for automotive dealerships as technical lead — from system design through AWS deployment, plus Twilio voice/SMS workflows and CDK Drive integration.</p>
                     <div class="project-tech">
                         <span class="tech-badge">Laravel</span>
-                        <span class="tech-badge">CSV/XLSX</span>
-                        <span class="tech-badge">Database</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <span class="project-tag">University Portal</span>
-                    <h3 class="project-title">ALMA XML Export Pipeline</h3>
-                    <p class="project-description">Scheduled flat-file XML generation to library system via SFTP. Implemented AWS key management, error handling, and automated backup retention policies.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">AWS</span>
-                        <span class="tech-badge">SFTP</span>
-                        <span class="tech-badge">Automation</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <span class="project-tag">CRM</span>
-                    <h3 class="project-title">CDK Drive Integration</h3>
-                    <p class="project-description">API integration with CDK automotive dealer management system. OAuth2 authentication migration from legacy credentials with real-time data synchronization and dealership workflow automation.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">API Integration</span>
-                        <span class="tech-badge">OAuth2</span>
-                        <span class="tech-badge">Laravel</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <span class="project-tag">CRM</span>
-                    <h3 class="project-title">Twilio Communications</h3>
-                    <p class="project-description">SMS A2P 10DLC implementation, call whisper, barge-in with conference features, and rate limiting management. Production-grade communication automation for sales and support workflows.</p>
-                    <div class="project-tech">
-                        <span class="tech-badge">API Integration</span>
+                        <span class="tech-badge">Vue</span>
                         <span class="tech-badge">Twilio</span>
-                        <span class="tech-badge">SMS</span>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <span class="project-tag">CRM</span>
-                    <h3 class="project-title">Legacy to Modern Migration</h3>
-                    <p class="project-description">Migration of legacy system to modern Laravel architecture with complete data migration strategy. Handled schema transformation, data validation, and zero-downtime deployment for production database.</p>
+                    <span class="project-tag">Education</span>
+                    <h3 class="project-title">WSU Alumni Portal & Skill Search</h3>
+                    <p class="project-description">Built a student alumni engagement portal for Western Sydney University with automated XML report delivery via SFTP, and integrated the Lightcast Classification API for hierarchy-aware skills search.</p>
                     <div class="project-tech">
                         <span class="tech-badge">Laravel</span>
-                        <span class="tech-badge">Database</span>
-                        <span class="tech-badge">Migration</span>
+                        <span class="tech-badge">REST API</span>
+                        <span class="tech-badge">SFTP</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">Migration</span>
+                    <h3 class="project-title">Legacy CRM Re-Architecture</h3>
+                    <p class="project-description">Led migration of a legacy ActionHero.js CRM to a modern Laravel/Vue codebase, including full production data migration, schema transformation, and validation with zero business disruption.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">Vue</span>
+                        <span class="tech-badge">Data Migration</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">Clean Energy</span>
+                    <h3 class="project-title">EV Charging Network Platform</h3>
+                    <p class="project-description">Built a portal for managing EV charging transactions with role-based access control, integrating charging station hardware via OCPP, plus the API powering the companion mobile app.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">OCPP</span>
+                        <span class="tech-badge">WebSockets</span>
+                        <span class="tech-badge">REST API</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <span class="project-tag">Localization</span>
+                    <h3 class="project-title">Straker Translation & CRM Platform</h3>
+                    <p class="project-description">Built and maintained a CRM and translation platform for global localization services, with Slack/Teams integrations and AI-powered features using Cohere and OpenAI.</p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Laravel</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">OpenAI</span>
                     </div>
                 </div>
             </div>
@@ -660,28 +1017,112 @@
 
         <!-- Skills Section -->
         <section class="skills" id="skills">
+            <div class="section-eyebrow">Toolbox</div>
             <h2 class="section-title">Skills & Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Arsenal</h3>
+                    <h3>Languages & Frameworks</h3>
                     <div class="skill-list">
-                        <div class="skill-item">Laravel & PHP</div>
-                        <div class="skill-item">REST API Design</div>
-                        <div class="skill-item">Database Design & Optimization</div>
-                        <div class="skill-item">OAuth2 & Auth Patterns</div>
-                        <div class="skill-item">Query Performance & Caching</div>
+                        <span class="skill-pill">PHP / Laravel</span>
+                        <span class="skill-pill">JavaScript / TypeScript</span>
+                        <span class="skill-pill">Vue.js</span>
+                        <span class="skill-pill">Nuxt</span>
+                        <span class="skill-pill">jQuery</span>
+                        <span class="skill-pill">Python</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>Experience With</h3>
+                    <h3>Databases & Caching</h3>
                     <div class="skill-list">
-                        <div class="skill-item">Automotive & logistics apps</div>
-                        <div class="skill-item">Enterprise integrations</div>
-                        <div class="skill-item">Data import/export pipelines</div>
-                        <div class="skill-item">Communication APIs & SMS</div>
-                        <div class="skill-item">Real-time applications</div>
-                        <div class="skill-item">Job queuing & background processing</div>
+                        <span class="skill-pill">MySQL</span>
+                        <span class="skill-pill">PostgreSQL</span>
+                        <span class="skill-pill">Percona</span>
+                        <span class="skill-pill">Redis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Cloud & Infrastructure</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill">AWS EC2</span>
+                        <span class="skill-pill">AWS RDS</span>
+                        <span class="skill-pill">AWS S3</span>
+                        <span class="skill-pill">AWS SES</span>
+                        <span class="skill-pill">Elastic Beanstalk</span>
+                        <span class="skill-pill">Laravel Vapor</span>
+                        <span class="skill-pill">AWS Bedrock</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Integrations</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill">Twilio</span>
+                        <span class="skill-pill">SendGrid</span>
+                        <span class="skill-pill">PayWay</span>
+                        <span class="skill-pill">Passkit</span>
+                        <span class="skill-pill">Firebase</span>
+                        <span class="skill-pill">Pusher</span>
+                        <span class="skill-pill">WebSockets</span>
+                        <span class="skill-pill">REST APIs</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>AI-Assisted Development</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill">Claude</span>
+                        <span class="skill-pill">OpenAI</span>
+                        <span class="skill-pill">Cohere</span>
+                        <span class="skill-pill">Cursor</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools & DevOps</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">GitHub Actions</span>
+                        <span class="skill-pill">Jenkins</span>
+                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">Envoyer</span>
+                        <span class="skill-pill">Laravel Nova</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Business & Client Engagement</h3>
+                    <div class="skill-list">
+                        <span class="skill-pill">Client Communication</span>
+                        <span class="skill-pill">Business Strategy Input</span>
+                        <span class="skill-pill">Requirements Discovery</span>
+                        <span class="skill-pill">Technical Consulting</span>
+                        <span class="skill-pill">Stakeholder Management</span>
+                        <span class="skill-pill">Project Planning</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education" id="education">
+            <div class="section-eyebrow">Background</div>
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <div class="education-main">
+                    <h3>Bachelor of Science in Information Technology</h3>
+                    <p>Gordon College — Olongapo City</p>
+                    <ul class="education-awards">
+                        <li>Senior Programmer of the Year (April 2016)</li>
+                        <li>Best Capstone Project of the Year (April 2016)</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="education-date">Jan 2011 – Apr 2016</div>
+                    <div class="languages-row" style="margin-top: 1.5rem;">
+                        <span class="language-pill"><strong>Filipino</strong> — Native</span>
+                        <span class="language-pill"><strong>English</strong> — Professional</span>
                     </div>
                 </div>
             </div>
@@ -690,38 +1131,34 @@
         <!-- Contact Section -->
         <section class="contact" id="contact">
             <h2>Ready to collaborate?</h2>
-            <p>Let's build something great together. Reach out via email or find me on GitHub.</p>
+            <p>Open to senior full-stack and Laravel engineering roles. Let's build something great together.</p>
             <div class="social-links">
-                <a href="/cdn-cgi/l/email-protection#69081a010b0c0c4704291a0108020c1e0c050547070c1d" class="social-link">
+                <a href="mailto:ashbeedotmorgado@gmail.com" class="social-link">
                     📧 Email
                 </a>
-                <a href="https://github.com" class="social-link">
+                <a href="tel:+639685794313" class="social-link">
+                    📱 +63 968 579 4313
+                </a>
+                <a href="https://github.com/primoashbee" class="social-link" target="_blank" rel="noopener">
                     💻 GitHub
                 </a>
-                <a href="https://linkedin.com" class="social-link">
+                <a href="https://linkedin.com/in/ashbee-morgado" class="social-link" target="_blank" rel="noopener">
                     💼 LinkedIn
                 </a>
             </div>
+            <div class="contact-location">Olongapo City, Zambales, Philippines</div>
         </section>
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2024 Ashbee Morgado. Built with attention to clean code and good design.</p>
+            <p>&copy; 2026 Ashbee Morgado. Built with attention to clean code and good design.</p>
             <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
-                Views: <span id="view-counter">0</span>
-            </p>
-            <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
-                <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fprimoashbee.github.io&label=Views&icon=eye&color=%23ff6b35&labelColor=%230f0804" alt="Views" style="height: 20px; vertical-align: middle;" />
+                <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fprimoashbee.github.io&label=Views&icon=eye&color=%236366f1&labelColor=%2305070d" alt="Views" style="height: 20px; vertical-align: middle;" />
             </p>
         </footer>
     </div>
 
-
-
-    
     <script>
-
-    
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -733,7 +1170,7 @@
             });
         });
 
-        // Add scroll animation to project cards
+        // Add scroll animation to cards
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -742,4 +1179,9 @@
             });
         });
 
+        document.querySelectorAll('.project-card, .timeline-card, .skill-category').forEach(el => {
+            observer.observe(el);
+        });
     </script>
+</body>
+</html>
